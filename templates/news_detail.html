@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class ="news-detail-container">
+<div class="news-card">
+    {% if news_item.urlToImage %}
+    <img src="{{ news_item.urlToImage }}" alt="News Image">
+    {% endif %}
+
+    <h3>{{ news_item.title }}</h3>
+    <p>{{ news_item.description }}</p>
+    <p class="meta">Published: {{ news_item.publishedAt }} | Source: {{ news_item.source.name }}</p>
+
+    <form action="{{ url_for('like', news_id=news_id) }}" method="post">
+        <button type="submit">👍 Like ({{ likes }})</button>
+    </form>
+
+    <form action="{{ url_for('comment', news_id=news_id) }}" method="post">
+        <input type="text" name="comment" placeholder="Write a comment..." required>
+        <button type="submit">💬 Comment</button>
+    </form>
+
+<div class="comments-slider">
+    <!-- <h4>Comments</h4> -->
+    <ul>
+        {% for comment in comments %}
+        <p><strong>{{ comment.user.username }}
+            :</strong> {{ comment.content }}</p>
+        {% else %}
+        <li>No comments yet.</li>
+        {% endfor %}
+    </ul>
+    </div>
+    </div>
+</div>
+{% endblock %}

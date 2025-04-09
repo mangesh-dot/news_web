@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="main-content">
+  <div class="news-container">
+    <h2 class="explore-title">🧭 Explore</h2>
+    <div class="category-grid">
+      {% for cat in categories %}
+        <a href="{{ url_for('category', cat=cat.lower()) }}" class="category-card">{{ cat }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
