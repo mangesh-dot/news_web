@@ -45,7 +45,7 @@ def login():
             return redirect(url_for('home'))
         else:
             return "Invlid credenitials"
-    return render_template('Login.html')
+    return render_template('login.html')
 
     
 
